@@ -17,20 +17,25 @@ public class Main {
         System.out.print("Quelle opération souhaitez-vous effectuer (add, sub, mul, div) ? ");
         String operation = scanner.nextLine();
 
-        if (operation.equals("add")) {
-            System.out.printf("%f + %f = %f\n", nombre1, nombre2, nombre1 + nombre2);
-        } else if (operation.equals("sub")) {
-            System.out.printf("%f - %f = %f\n", nombre1, nombre2, nombre1 - nombre2);
-        } else if (operation.equals("mul")) {
-            System.out.printf("%f * %f = %f\n", nombre1, nombre2, nombre1 * nombre2);
-        } else if (operation.equals("div")) {
-            if (nombre2 == 0) {
-                System.out.println("Impossible de diviser par zéro.");
-            } else {
-                System.out.printf("%f / %f = %f\n", nombre1, nombre2, nombre1 / nombre2);
-            }
-        } else {
-            System.out.printf("%s n'est pas une opération supportée.\n", operation);
+        switch (operation) {
+            case "add":
+                System.out.printf("%f + %f = %f\n", nombre1, nombre2, nombre1 + nombre2);
+                break;
+            case "sub":
+                System.out.printf("%f - %f = %f\n", nombre1, nombre2, nombre1 - nombre2);
+                break;
+            case "mul":
+                System.out.printf("%f * %f = %f\n", nombre1, nombre2, nombre1 * nombre2);
+                break;
+            case "div":
+                if (nombre2 == 0) {
+                    System.out.println("Impossible de diviser par zéro.");
+                } else {
+                    System.out.printf("%f / %f = %f\n", nombre1, nombre2, nombre1 / nombre2);
+                }
+                break;
+            default:
+                System.out.printf("%s n'est pas une opération supportée.\n", operation);
         }
 
         scanner.close();
