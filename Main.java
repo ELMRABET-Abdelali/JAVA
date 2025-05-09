@@ -2,24 +2,29 @@ import java.time.LocalDate;
 
 class Main {
     public static void main(String[] args) {
-        User youngerUser = new User();
-        
-        youngerUser.name = "amine said";
-        youngerUser.birthDay = LocalDate.parse("1998-01-01");
-        
-        System.out.printf("%s est né le %s et il a maintenant %d ans.%n", 
-                          youngerUser.name, 
-                          youngerUser.birthDay.toString(), 
-                          youngerUser.age());
+        User user = new User("amine saad", "1995-01-31");
 
-        User olderUser = new User();
-        
-        olderUser.name = "siham kinan";
-        olderUser.birthDay = LocalDate.parse("1979-01-01");
-        
-        System.out.printf("%s est née le %s et elle a maintenant %d ans.%n", 
-                          olderUser.name, 
-                          olderUser.birthDay.toString(), 
-                          olderUser.age());
+        // user.name = "amine saad";
+        // user.birthDay = LocalDate.parse("1995-01-31");
+
+        Book book = new Book("carmilla", "Sheridan Le Fanu");
+                      
+        // book.title = "Carmilla";
+        // book.author = "Sheridan Le Fanu";
+
+        user.borrow(book);
+
+        System.out.printf("%s est né le %s et il a maintenant %d ans.%n", 
+                          user.name, 
+                          // user.birthDay.toString(), 
+                          user.getBirthDay(), 
+                          user.age());
+
+        System.out.printf("%s a emprunté ces livres : %s%n", 
+                          user.name, 
+                          user.books.toString());
+
+        System.out.printf("%s a emprunté ces livres : %s \n", user.name, user.books.toString());
+                      
     }
 }
