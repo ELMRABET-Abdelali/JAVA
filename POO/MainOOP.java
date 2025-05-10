@@ -1,0 +1,701 @@
+// 1. introduction, user class creation !
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+      User u = new User();
+      u.name = "John";
+      u.memberShip = "Premium";
+
+      User u1 = new User();
+      u1.name = "Jane";
+      u1.memberShip = "Basic";
+
+      System.out.println("l'utilisateur u est :");
+      System.out.println(u.name);
+      System.out.println(u.memberShip);
+      System.out.println("l'utilisateur u1 est :");
+      System.out.println(u1.name);
+      System.out.println(u1.memberShip);
+    }
+}
+--------------------
+public class User {
+  String name;
+  String memberShip;
+}
+
+// 2. get & set avec private
+
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+      User u = new User();
+      u.set_name("John");
+      u.memberShip = "Premium";
+
+      User u1 = new User();
+      u1.set_name("Jane");
+      u1.memberShip = "Basic";
+
+      System.out.println("l'utilisateur u est :");
+      System.out.println(u.get_name());
+      System.out.println(u.memberShip);
+      System.out.println("l'utilisateur u1 est :");
+      System.out.println(u1.get_name());
+      System.out.println(u1.memberShip);
+    }
+}
+-------- 1
+  public class User {
+  private String name;
+  String memberShip;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+}
+
+
+--------- 2
+public class User {
+  // private only visible in the class, not usable outside!
+  private String _name;
+  String memberShip;
+
+  void set_name(String name){
+    _name = name;
+  }
+
+  String get_name() {
+    return _name;
+  }
+}
+
+-------------
+
+// 3. method overloading pour enum
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+      User u = new User();
+      u.set_name("John");
+      u.setMemberShip(User.Membership.gold);
+
+      User u1 = new User();
+      u1.set_name("Jane");
+      u1.memberShip = "Basic";
+
+      System.out.println("l'utilisateur u est :");
+      System.out.println(u.get_name());
+      System.out.println(u.memberShip);
+      System.out.println("l'utilisateur u1 est :");
+      System.out.println(u1.get_name());
+      System.out.println(u1.memberShip);
+    }
+}
+
+--------------- 
+public class User {
+  private String name;
+  String memberShip;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+  
+}
+
+// 4. Constructors
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+      User u = new User("John", "gold");
+      // u.set_name("John");
+      // u.setMemberShip(User.Membership.gold);
+
+      User u1 = new User("Jane", "silver");
+      // u1.set_name("Jane");
+      // u1.memberShip = "Basic";
+
+      System.out.println("l'utilisateur u est :");
+      System.out.println(u.get_name());
+      System.out.println(u.memberShip);
+      System.out.println("l'utilisateur u1 est :");
+      System.out.println(u1.get_name());
+      System.out.println(u1.memberShip);
+    }
+}
+
+-------------------
+
+public class User {
+  private String name;
+  String memberShip;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+
+  public User(String name, String memberShip){
+    set_name(name);
+    setMemberShip(memberShip);
+  }
+  
+}
+
+// 5. Constructors (default)
+  
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+      User u = new User("John", "gold");
+      // u.set_name("John");
+      // u.setMemberShip(User.Membership.gold);
+
+      User u1 = new User("Jane", "silver");
+      // u1.set_name("Jane");
+      // u1.memberShip = "Basic";
+
+      User u2 = new User();
+
+      System.out.println("l'utilisateur u est :");
+      System.out.println(u.get_name());
+      System.out.println(u.memberShip);
+      System.out.println("l'utilisateur u1 est :");
+      System.out.println(u1.get_name());
+      System.out.println(u1.memberShip);
+                      
+      System.out.println("l'utilisateur u2 est :");
+      System.out.println(u2.get_name());
+      System.out.println(u2.memberShip);
+    }
+}
+
+-------------------
+
+public class User {
+  private String name;
+  String memberShip;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+
+  public User(){
+    set_name("default");
+  }
+
+  public User(String name, String memberShip){
+    set_name(name);
+    setMemberShip(memberShip);
+  }
+  
+}
+
+// 6.Method Override (to string example)
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+      User u = new User("John", "gold");
+      // u.set_name("John");
+      // u.setMemberShip(User.Membership.gold);
+
+      User u1 = new User("Jane", "silver");
+      // u1.set_name("Jane");
+      // u1.memberShip = "Basic";
+
+      User u2 = new User();
+
+      System.out.println("l'utilisateur u est :");
+      System.out.println(u);
+      System.out.println(u.toString());
+
+    }
+}
+
+---------------
+public class User {
+  private String name;
+  String memberShip;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+
+  public User(){
+    set_name("default");
+  }
+
+  public User(String name, String memberShip){
+    set_name(name);
+    setMemberShip(memberShip);
+  }
+
+  public String toString(){
+    return String.format("%s is a %s member", this.name, this.memberShip);
+  }
+  
+}
+
+// 7. method ovveride (equals)
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+                      
+      User u = new User("John", "gold");
+      User u1 = new User("John", "gold");
+                      
+      System.out.println(u == u1);
+      System.out.println(u.equals(u1));
+
+    }
+}
+
+---------------------
+
+public class User {
+  private String name;
+  String memberShip;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+
+  public User(){
+    set_name("default");
+  }
+
+  public User(String name, String memberShip){
+    set_name(name);
+    setMemberShip(memberShip);
+  }
+
+  public String toString(){
+    return String.format("%s is a %s member", this.name, this.memberShip);
+  }
+
+  public boolean equals(User u2){
+    return this.name == u2.name && this.memberShip == u2.memberShip;
+  }
+  
+}
+
+// 8. generic list
+
+import java.util.ArrayList;
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+                      
+      User u = new User("John", "gold");
+
+      ArrayList<User> users = new ArrayList<User>();
+      users.add(u);
+      users.add(new User("Jane", "silver"));
+      users.add(new User("Jack", "bronze"));
+      users.add(new User("Jill", "gold"));
+      users.add(new User("Jake", "silver"));
+                      
+      System.out.println(users.get(0).get_name());
+      System.out.println(users.get(1).get_name());
+
+      System.out.println("printing users :");
+      for (User user : users){
+                        System.out.println(user.get_name());
+      }
+                      
+      System.out.println("printing users name and membership :");
+      for (int i = 0; i < users.size(); i++){
+                        System.out.print(users.get(i).get_name());
+                        System.out.println(" : " + users.get(i).getMemberShip());
+      }
+
+    }
+}
+
+-----------------
+
+  public class User {
+  private String name;
+  String memberShip;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+
+  public User(){
+    set_name("default");
+  }
+
+  public User(String name, String memberShip){
+    set_name(name);
+    setMemberShip(memberShip);
+  }
+
+  public String toString(){
+    return String.format("%s is a %s member", this.name, this.memberShip);
+  }
+
+  public boolean equals(User u2){
+    return this.name == u2.name && this.memberShip == u2.memberShip;
+  }
+  
+}
+
+
+// 9. Data Members
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+
+      //ArrayList<User> users = new ArrayList<User>();
+      User.admins = new ArrayList<User>();
+                      
+      //users.add(new User("Jane", "silver"));   // user => user.admins
+      User.admins.add(new User("Jack", "bronze"));
+      User.admins.add(new User("Jill", "gold"));
+      User.admins.add(new User("Jake", "silver"));
+                      
+      System.out.println(User.admins.get(0).get_name());
+      System.out.println(User.admins.get(1).get_name());
+
+      System.out.println("printing users :");
+      for (User user : User.admins){
+                        System.out.println(user.get_name());
+      }
+ 
+
+    }
+}
+
+--------------------
+  
+import java.util.List;
+
+public class User {
+  private String name;
+  String memberShip;
+
+  // list users admins
+  public static List<User> admins;
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+
+  public User(){
+    set_name("default");
+  }
+
+  public User(String name, String memberShip){
+    set_name(name);
+    setMemberShip(memberShip);
+  }
+
+  public String toString(){
+    return String.format("%s is a %s member", this.name, this.memberShip);
+  }
+
+  public boolean equals(User u2){
+    return this.name == u2.name && this.memberShip == u2.memberShip;
+  }
+  
+}
+
+
+
+// 10. Static method
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello world!");
+
+      User.admins = new ArrayList<User>();
+                      
+      User.admins.add(new User("Jack", "bronze"));
+      User.admins.add(new User("Jill", "gold"));
+      User.admins.add(new User("Jake", "silver"));
+
+      // print users
+      User.printUsers();
+ 
+
+    }
+}
+
+--------------------
+
+  import java.util.List;
+
+public class User {
+  private String name;
+  String memberShip;
+
+  public static List<User> admins;
+
+  // print users method static
+  public static void printUsers(){
+    for (User user : admins){
+      System.out.println(user.get_name());
+    }
+  }
+
+  void set_name(String name){
+    this.name = name;
+  }
+
+  String get_name() {
+    return this.name;
+  }
+
+  void setMemberShip(String memberShip) {
+    this.memberShip = memberShip;
+  }
+
+  public String getMemberShip() {
+    return memberShip;
+  }
+
+  void setMemberShip(Membership membership){
+    this.memberShip = membership.name();
+  }
+
+  public enum Membership {
+    bronze,silver,gold;
+  }
+
+  public User(){
+    set_name("default");
+  }
+
+  public User(String name, String memberShip){
+    set_name(name);
+    setMemberShip(memberShip);
+  }
+
+  public String toString(){
+    return String.format("%s is a %s member", this.name, this.memberShip);
+  }
+
+  public boolean equals(User u2){
+    return this.name == u2.name && this.memberShip == u2.memberShip;
+  }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
